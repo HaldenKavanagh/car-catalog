@@ -16,27 +16,24 @@ function App() {
       const response = await fetch(url);
       const data = await response.json();
 
-      
       const token = response.headers.get("your-token");
+
       setAccessToken(token);
 
-      
       setCars(data.cars);
+      console.log(data.cars);
     } catch (error) {
       console.error("Error fetching cars:", error);
     }
   };
 
-  
   const fetchCarDetails = async (id) => {
     try {
-      
       if (!accessToken) {
         console.error("Access token not found. Please authenticate first.");
         return;
       }
 
-      
       const response = await fetch(`https://exam.razoyo.com/api/cars/${id}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -77,27 +74,55 @@ function App() {
 
   return (
     <div className="app">
+      <div className="select-params">
+      
+      <h2 className="select-element-title">Filter by make: </h2>
       <select onChange={(e) => handleSelectMake(e.target.value)}>
-        <option value="">All Makes</option>
+        <option value="">Any</option>
         <option value="Toyota">Toyota</option>
         <option value="Honda">Honda</option>
         <option value="Ford">Ford</option>
         <option value="Ferrari">Ferrari</option>
       </select>
+      </div>
       <div className="car-list">
         {cars.map((car) => (
           <div key={car.id} className="card">
-            <h2>{car.make}</h2>
-            <h2>{car.model}</h2>
-            {selectedCar && selectedCar.car.id === car.id ? (
-              <div className="car-details">
-                <IoIosArrowUp onClick={handleCloseDetails} />
-
-                <img src={selectedCar.car.image} alt={selectedCar.car.make} />
-                <h2>price:{selectedCar.car.price}</h2>
+            <div className="car-details-toggle">
+              <div className="car-name">
+                <h2>{car.year}</h2>
+                <h2>{car.make}</h2>
+                <h2>{car.model}</h2>
               </div>
-            ) : (
-              <IoIosArrowDown onClick={() => handleOpenDetails(car.id)} />
+              {selectedCar && selectedCar.car.id === car.id ? (
+                <div className="toggle-dropdown" onClick={handleCloseDetails}>
+                  <p>View details</p>
+                  <IoIosArrowUp />
+                </div>
+              ) : (
+                <div
+                  className="toggle-dropdown"
+                  onClick={() => handleOpenDetails(car.id)}
+                >
+                  <p>View details</p>
+                  <IoIosArrowDown />
+                </div>
+              )}
+            </div>
+            {selectedCar && selectedCar.car.id === car.id && (
+              <div className="car-details">
+                <img
+                  src={selectedCar.car.image}
+                  alt={selectedCar.car.make}
+                  className="car-img"
+                />
+                <div className="car-details-list">
+                  <h2>Price: ${selectedCar.car.price}</h2>
+                  <h2> {selectedCar.car.mpg} MPG</h2>
+
+                  <h2>{selectedCar.car.seats} Seats</h2>
+                </div>
+              </div>
             )}
           </div>
         ))}

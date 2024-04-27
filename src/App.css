@@ -1,12 +1,23 @@
 * {
   margin: 0px;
+  font-family: "Montserrat", sans-serif;
 }
 .app {
-  background: var(--dark);
-  height: 100vh;
+  background: var(--darkest);
+  padding: 30px;
+  min-height: 95vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.select-params {
+  display: flex;
+}
+
+.select-element-title {
+  color: var(--medium);
+  margin-right: 15px;
 }
 .car-list {
   display: flex;
@@ -15,6 +26,58 @@
 .card {
   background: var(--medium);
   margin: 20px;
+  padding: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  width: 500px;
+  border-radius: 5px;
+}
+.car-name {
+  display: flex;
+}
+.car-name h2 {
+  margin-right: 10px;
+}
+.car-details-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.toggle-dropdown {
+  display: flex;
+  cursor: pointer;
+}
+.car-details {
+  display: flex;
+  padding-top: 15px;
+
+  align-items: center;
+}
+
+.car-img {
+  max-height: 200px;
+}
+
+.car-details-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+select {
+  appearance: none;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+}
+
+select option {
+  background-color: var(--light);
+  color: #333;
 }
