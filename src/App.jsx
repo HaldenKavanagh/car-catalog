@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 function App() {
   const [cars, setCars] = useState([]);
@@ -15,27 +16,27 @@ function App() {
       const response = await fetch(url);
       const data = await response.json();
 
-      // Extract and store the token from the response headers
+      
       const token = response.headers.get("your-token");
       setAccessToken(token);
 
-      // Set cars state
+      
       setCars(data.cars);
     } catch (error) {
       console.error("Error fetching cars:", error);
     }
   };
 
-  // Function to fetch car details from the API
+  
   const fetchCarDetails = async (id) => {
     try {
-      // Check if access token exists
+      
       if (!accessToken) {
         console.error("Access token not found. Please authenticate first.");
         return;
       }
 
-      // Fetch car details using the access token
+      
       const response = await fetch(`https://exam.razoyo.com/api/cars/${id}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -75,25 +76,28 @@ function App() {
   }, [selectedMake]);
 
   return (
-    <div className="App">
+    <div className="app">
       <select onChange={(e) => handleSelectMake(e.target.value)}>
         <option value="">All Makes</option>
         <option value="Toyota">Toyota</option>
         <option value="Honda">Honda</option>
+        <option value="Ford">Ford</option>
+        <option value="Ferrari">Ferrari</option>
       </select>
       <div className="car-list">
         {cars.map((car) => (
-          <div key={car.id} className="car">
+          <div key={car.id} className="card">
             <h2>{car.make}</h2>
             <h2>{car.model}</h2>
             {selectedCar && selectedCar.car.id === car.id ? (
               <div className="car-details">
-                <button onClick={handleCloseDetails}>Close</button>
-                <h2>price:{selectedCar.car.price}</h2>
+                <IoIosArrowUp onClick={handleCloseDetails} />
+
                 <img src={selectedCar.car.image} alt={selectedCar.car.make} />
+                <h2>price:{selectedCar.car.price}</h2>
               </div>
             ) : (
-              <button onClick={() => handleOpenDetails(car.id)}>Open</button>
+              <IoIosArrowDown onClick={() => handleOpenDetails(car.id)} />
             )}
           </div>
         ))}
