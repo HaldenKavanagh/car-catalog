@@ -75,15 +75,14 @@ function App() {
   return (
     <div className="app">
       <div className="select-params">
-      
-      <h2 className="select-element-title">Filter by make: </h2>
-      <select onChange={(e) => handleSelectMake(e.target.value)}>
-        <option value="">Any</option>
-        <option value="Toyota">Toyota</option>
-        <option value="Honda">Honda</option>
-        <option value="Ford">Ford</option>
-        <option value="Ferrari">Ferrari</option>
-      </select>
+        <h2 className="select-element-title">Filter by make: </h2>
+        <select onChange={(e) => handleSelectMake(e.target.value)}>
+          <option value="">Any</option>
+          <option value="Toyota">Toyota</option>
+          <option value="Honda">Honda</option>
+          <option value="Ford">Ford</option>
+          <option value="Ferrari">Ferrari</option>
+        </select>
       </div>
       <div className="car-list">
         {cars.map((car) => (
@@ -96,7 +95,7 @@ function App() {
               </div>
               {selectedCar && selectedCar.car.id === car.id ? (
                 <div className="toggle-dropdown" onClick={handleCloseDetails}>
-                  <p>View details</p>
+                  <p>Close details</p>
                   <IoIosArrowUp />
                 </div>
               ) : (
