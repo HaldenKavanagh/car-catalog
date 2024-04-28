@@ -1,3 +1,13 @@
+/* general styling */
+
+:root {
+  --lightest: #f8f9fa;
+  --light: #ced4da;
+  --medium: #adb5bd;
+  --dark: #495057;
+  --darkest: #212529;
+}
+
 * {
   margin: 0px;
   font-family: "Montserrat", sans-serif;
@@ -11,6 +21,8 @@
   align-items: center;
 }
 
+/* styling for the car brand selector & "filter by make:" text beside it */
+
 .select-params {
   display: flex;
 }
@@ -19,10 +31,31 @@
   color: var(--medium);
   margin-right: 15px;
 }
+
+select {
+  appearance: none;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  cursor: pointer;
+}
+
+select option {
+  background-color: var(--light);
+  color: #333;
+}
+
+/* container for the cards */
+
 .car-list {
   display: flex;
   flex-direction: column;
 }
+
+/* card styling */
+
 .card {
   background: var(--medium);
   margin: 20px;
@@ -34,22 +67,28 @@
   border-radius: 5px;
   color: var(--darkest);
 }
+
+/* Card Header styling */
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
 .car-name {
   display: flex;
 }
 .car-name h2 {
   margin-right: 10px;
 }
-.car-details-toggle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
 .toggle-dropdown {
   display: flex;
   cursor: pointer;
 }
+
+/* Styling for the elements in the dropdown */
 .car-details {
   display: flex;
   padding-top: 15px;
@@ -74,19 +113,4 @@
 
 .car-detail {
   margin: 10px;
-}
-
-select {
-  appearance: none;
-  padding: 8px 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: white;
-  cursor: pointer;
-}
-
-select option {
-  background-color: var(--light);
-  color: #333;
 }

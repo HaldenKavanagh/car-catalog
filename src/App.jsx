@@ -24,7 +24,6 @@ function App() {
       setAccessToken(token);
 
       setCars(data.cars);
-      console.log(data.cars);
     } catch (error) {
       console.error("Error fetching cars:", error);
     }
@@ -92,7 +91,7 @@ function App() {
       <div className="car-list animate__animated animate__backInDown">
         {cars.map((car) => (
           <div key={car.id} className="card">
-            <div className="car-details-toggle">
+            <div className="card-header">
               <div className="car-name">
                 <h2>{car.year}</h2>
                 <h2>{car.make}</h2>
