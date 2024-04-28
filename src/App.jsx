@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import "animate.css";
 
 function App() {
   const [cars, setCars] = useState([]);
   const [selectedCar, setSelectedCar] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
   const [selectedMake, setSelectedMake] = useState("");
+
+  // function to fetch all cars, updates the cars and access token variable on execution.
 
   const fetchCars = async (make = "") => {
     try {
@@ -26,6 +29,8 @@ function App() {
       console.error("Error fetching cars:", error);
     }
   };
+
+  // Function to fetch data for a single car. Uses the access token from the previous function to perform the fetch.
 
   const fetchCarDetails = async (id) => {
     try {
@@ -74,7 +79,7 @@ function App() {
 
   return (
     <div className="app">
-      <div className="select-params">
+      <div className="select-params animate__animated animate__fadeIn  animate__delay-1s">
         <h2 className="select-element-title">Filter by make: </h2>
         <select onChange={(e) => handleSelectMake(e.target.value)}>
           <option value="">Any</option>
@@ -84,7 +89,7 @@ function App() {
           <option value="Ferrari">Ferrari</option>
         </select>
       </div>
-      <div className="car-list">
+      <div className="car-list animate__animated animate__backInDown">
         {cars.map((car) => (
           <div key={car.id} className="card">
             <div className="car-details-toggle">
@@ -116,10 +121,12 @@ function App() {
                   className="car-img"
                 />
                 <div className="car-details-list">
-                  <h2>Price: ${selectedCar.car.price}</h2>
-                  <h2> {selectedCar.car.mpg} MPG</h2>
+                  <h2 className="car-detail">
+                    Price: ${selectedCar.car.price}
+                  </h2>
+                  <h2 className="car-detail"> {selectedCar.car.mpg} MPG</h2>
 
-                  <h2>{selectedCar.car.seats} Seats</h2>
+                  <h2 className="car-detail">{selectedCar.car.seats} Seats</h2>
                 </div>
               </div>
             )}
