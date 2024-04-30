@@ -4,7 +4,7 @@
   --lightest: #f8f9fa;
   --light: #ced4da;
   --medium: #adb5bd;
-  --dark: #495057;
+  --dark: #343a40;
   --darkest: #212529;
 }
 
@@ -52,6 +52,11 @@ select option {
 .car-list {
   display: flex;
   flex-direction: column;
+  border: 2px solid var(--medium);
+  border-radius: 15px;
+  padding: 20px;
+  margin-top: 30px;
+  background: var(--dark);
 }
 
 /* card styling */
@@ -66,6 +71,11 @@ select option {
   width: 500px;
   border-radius: 5px;
   color: var(--darkest);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.1);
 }
 
 /* Card Header styling */
@@ -86,6 +96,11 @@ select option {
 .toggle-dropdown {
   display: flex;
   cursor: pointer;
+}
+
+/* arrow icons */
+.toggle-dropdown svg {
+  margin-left: 5px;
 }
 
 /* Styling for the elements in the dropdown */
